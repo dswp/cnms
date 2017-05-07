@@ -12,3 +12,6 @@ add_action( 'after_setup_theme', 'woocommerce_support' );
 function woocommerce_support() {
 	add_theme_support( 'woocommerce' );
 }
+
+require_once( get_stylesheet_directory() . '/framework/movie-category-taxonomy.php' );
+require_once( get_stylesheet_directory() . '/framework/movie-post-type.php' );
