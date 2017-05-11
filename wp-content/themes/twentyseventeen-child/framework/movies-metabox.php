@@ -6,12 +6,7 @@ function movie_product_options_get_meta( $value ) {
 	if ( ! empty( $field ) ) {
 		return is_array( $field ) ? stripslashes_deep( $field ) : stripslashes( wp_kses_decode_entities( $field ) );
 	} else {
-		switch( $value ) {
-			case 'movie_product_options_price':
-				return 1; // 1 dollar default movie price
-			default:
-				return '';
-		}
+		return null;
 	}
 }
 
@@ -34,8 +29,8 @@ function movie_product_options_html( $post) {
 		<input type="text" name="movie_product_options_subtitle" id="movie_product_options_subtitle" value="<?php echo movie_product_options_get_meta( 'movie_product_options_subtitle' ); ?>" style="width: 100%;">
 	</p>
 	<p>
-		<label for="movie_product_options_price"><?php _e( 'Price', 'cnms' ); ?></label><br>
-		<input type="text" name="movie_product_options_price" id="movie_product_options_price" value="<?php echo movie_product_options_get_meta( 'movie_product_options_price' ); ?>">
+		<label for="_price"><?php _e( 'Price', 'cnms' ); ?></label><br>
+		<input type="text" name="_price" id="_price" value="<?php echo movie_product_options_get_meta( '_price' ); ?>">
 	</p>
 	<?php
 }
@@ -48,19 +43,8 @@ function movie_product_options_save( $post_id ) {
 	if ( isset( $_POST['movie_product_options_subtitle'] ) )
 		update_post_meta( $post_id, 'movie_product_options_subtitle', esc_attr( $_POST['movie_product_options_subtitle'] ) );
 
-	if ( isset( $_POST['movie_product_options_price'] ) )
-		update_post_meta( $post_id, 'movie_product_options_price',  floatval( esc_attr( $_POST['movie_product_options_price'] ) ) );
+	if ( isset( $_POST['_price'] ) )
+		update_post_meta( $post_id, '_price',  floatval( esc_attr( $_POST['_price'] ) ) );
 }
 add_action( 'save_post', 'movie_product_options_save' );
 
-
-/*
-* Return woocommerce price value from CPT custom field
-*/
-function cnms_woocommerce_get_price( $price, $post ) {
-	if ( $post->post->post_type === 'movie' ) {
-		$price = movie_product_options_get_meta( 'movie_product_options_price' );
-	}
-	return $price;
-}
-add_filter( 'woocommerce_product_get_price','cnms_woocommerce_get_price', 20, 2 );
