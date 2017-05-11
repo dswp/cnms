@@ -15,3 +15,5 @@ function woocommerce_support() {
 
 require_once( get_stylesheet_directory() . '/framework/movie-category-taxonomy.php' );
 require_once( get_stylesheet_directory() . '/framework/movie-post-type.php' );
+require_once( get_stylesheet_directory() . '/framework/movies-metabox.php' );
+require_once( get_stylesheet_directory() . '/framework/movie-cpt-woocommerce-support.php' );
