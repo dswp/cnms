@@ -18,6 +18,7 @@ require_once( get_stylesheet_directory() . '/framework/movie-post-type.php' );
 require_once( get_stylesheet_directory() . '/framework/movies-metabox.php' );
 require_once( get_stylesheet_directory() . '/framework/movie-cpt-woocommerce-support.php' );
 require_once( get_stylesheet_directory() . '/framework/custom-registration.php' );
+require_once( get_stylesheet_directory() . '/framework/force-checkout.php' );
 
 
 // Show movies archive as a front page (for demo purpose)
