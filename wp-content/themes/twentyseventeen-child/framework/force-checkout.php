@@ -1,11 +1,9 @@
 <?php
 // skip past the cart page and go straight to the checkout page
-function cnms_add_to_cart_redirect() {
-	global $woocommerce;
-	$woocommerce->cart->get_checkout_url();
-	return $woocommerce->cart->get_checkout_url();
+function cnms_add_to_cart_redirect( $wc_get_cart_url ) {
+	return WC()->cart->get_checkout_url();
 }
-add_filter('add_to_cart_redirect', 'cnms_add_to_cart_redirect');
+add_filter('woocommerce_add_to_cart_redirect', 'cnms_add_to_cart_redirect');
 
 
 // replace default Add to cart button text
