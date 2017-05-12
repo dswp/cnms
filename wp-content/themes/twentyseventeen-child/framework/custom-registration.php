@@ -4,7 +4,7 @@
 function cnms_woo_extra_register_fields() { ?>
 	<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
 		<label for="skype_id"><?php _e( 'Skype ID', 'woocommerce' ); ?></label>
-		<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="skype_id" size="25" id="skype_id" value="<?php esc_attr_e( $_POST['skype_id'] ); ?>" />
+		<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="skype_id" size="25" id="skype_id" value="" />
 	</p>
 	<div class="clear"></div>
 	<?php
@@ -51,7 +51,7 @@ add_action( 'user_new_form', 'cnms_extra_user_fields' );
 function cnms_woo_extra_user_fields( $user ) {
 	?>
 	<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-		<label for="skype_id"><?php _e( 'Skype ID', 'cnms' ); ?> <span class="required">*</span></label>
+		<label for="skype_id"><?php _e( 'Skype ID', 'cnms' ); ?></label>
 		<input type="text" class="woocommerce-Input woocommerce-Input--email input-text" name="skype_id" size="25" id="skype_id" value="<?php echo get_current_user_field('skype_id'); ?>">
 	</p>
 	<?php
@@ -71,7 +71,7 @@ add_action( 'user_register', 'cnms_save_extra_register_fields' );
 add_action( 'profile_update', 'cnms_save_extra_register_fields' );
 
 // redirect after registration
-function redirect_to_featured_movies( $redirect, $user ) {
+function redirect_to_featured_movies( $redirect ) {
 	return home_url( '/movie_category/featured/' ); // @todo get rid of hardcode, put the destination URL into the options
 }
 add_filter( 'woocommerce_registration_redirect', 'redirect_to_featured_movies' );
